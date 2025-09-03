@@ -3,8 +3,15 @@ interface User {
     id: number;
     name: string;
 }
-const UsersPage = async() => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+const UsersPage = async () => {
+     const res = await fetch('https://jsonplaceholder.typicode.com/users');   //caching come automatically with Fetch in NEXT.JS
+    // const res = await fetch(
+    //     'https://jsonplaceholder.typicode.com/users',
+    //     {cache:'no-cache'});                           // Disabling the caching
+
+    // const res = await fetch(
+    //     'https://jsonplaceholder.typicode.com/users',
+    //     { next: { revalidate: 10 } });                    // Next.JS gonna run a Backdround job to get fresh data from backend every 10 sec
     const users: User[] = await res.json();
     return (
         <>
